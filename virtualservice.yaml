@@ -4,6 +4,8 @@ kind: VirtualService
 metadata:
   name: shared-vs
   namespace: gloo-system
+  labels:
+    routes: delegated
 spec:
   virtualHost:
     domains:
