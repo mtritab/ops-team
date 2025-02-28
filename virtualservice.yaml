@@ -7,13 +7,13 @@ metadata:
 spec:
   virtualHost:
     domains:
-    - demo.mtritaba.com
+    - '*.demo.mtritaba.com'
     routes:
     - matchers:
        - prefix: '/' # delegate ownership of all routes for `example.com`
       delegateAction:
         selector:
           labels:
-            domain: demo.mtritaba.com
+            domain: 'demo.mtritaba.com'
           namespaces:
           - '*'
