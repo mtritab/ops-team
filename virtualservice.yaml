@@ -7,6 +7,10 @@ metadata:
   labels:
     routes: delegated
 spec:
+  sslConfig:
+    secretRef:
+      name: gateway-tls
+      namespace: gloo-system
   virtualHost:
     domains:
     - '*.demo.mtritaba.com'
