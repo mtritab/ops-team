@@ -1,0 +1,43 @@
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: app-a
+  namespace: gloo-mesh
+  labels:
+    allow_ingress: "true"
+spec:
+  workloadClusters:
+  - name: 'mgmt'
+    namespaces:
+    - name: app-a-config
+  - name: '*'
+    namespaces:
+    - name: app-a
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: app-a
+  namespace: app-a-config
+spec:
+  exportTo:
+  - workspaces:
+    - name: ops-team
+    resources:
+    - kind: ALL
+  importFrom:
+  - workspaces:
+    - name: ops-team
+    resources:
+    - kind: SERVICE
+    - kind: VIRTUAL_DESTINATION
+    - kind: EXTERNAL_SERVICE
+  options:
+    federation:
+      enabled: false
+      serviceSelector:
+      - {}
+    serviceIsolation:
+      enabled: false
+      trimProxyConfig: false
