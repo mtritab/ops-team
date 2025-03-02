@@ -1,0 +1,21 @@
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualGateway
+metadata:
+  name: gmui-virtualgateway
+  namespace: ops-team-config
+spec:
+  listeners:
+  - allowedRouteTables:
+    - host: "gmui2.demo.mtritaba.com"
+    http: {}
+    port:
+      number: 443
+    tls:
+      mode: SIMPLE
+      secretName: gmui-tls
+  workloads:
+  - selector:
+      cluster: mgmt
+      labels:
+        istio: ingressgateway

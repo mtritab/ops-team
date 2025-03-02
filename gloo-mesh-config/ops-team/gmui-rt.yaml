@@ -1,0 +1,65 @@
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: gmui-rt
+  namespace: ops-team-config
+spec:
+  hosts:
+  - '*'
+  virtualGateways:
+  - cluster: mgmt
+    name: gmui-virtualgateway
+  workloadSelectors: []
+  http:
+  - name: gloo-mesh-ui-main
+    matchers:
+    - uri:
+        prefix: /welcome
+    - uri:
+        prefix: /login
+    - uri:
+        prefix: /graph
+    - uri:
+        prefix: /gateways
+    - uri:
+        prefix: /policies
+    - uri:
+        prefix: /static
+    - uri:
+        prefix: /workspace
+    - uri:
+        prefix: /tracing
+    - uri:
+        exact: /favicon.ico
+    - uri:
+        exact: /manifest.json
+    - uri:
+        regex: /rpc.gloo.solo.io.*
+    - uri:
+        prefix: /oidc-callback
+    - uri:
+        prefix: /logout
+    - uri:
+        exact: /
+    forwardTo:
+      destinations:
+      - ref:
+          name: gloo-mesh-ui
+          namespace: gloo-mesh
+        port:
+          number: 8090
+  - name: gmui-rewrite
+    matchers:
+    - uri:
+        prefix: /gmui
+    forwardTo:
+      pathRewrite: /
+      destinations:
+      - ref:
+          name: gloo-mesh-ui
+          namespace: gloo-mesh
+        port:
+          number: 8090
