@@ -44,6 +44,8 @@ spec:
     - uri:
         prefix: /logout
     - uri:
+        prefix: /assets
+    - uri:
         exact: /
     forwardTo:
       destinations:
