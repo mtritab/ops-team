@@ -1,0 +1,21 @@
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualDestination
+metadata:
+  name: productpage-vd
+  namespace: app-b-config
+  labels:
+    failover: "true"
+    expose: "true"
+spec:
+  hosts:
+  - productpage.mesh.internal
+  ports:
+  - number: 8080
+    protocol: HTTP
+    targetPort:
+      number: 9080
+  services:
+  - labels:
+      app: productpage
+    namespace: bookinfo
