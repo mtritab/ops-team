@@ -15,6 +15,7 @@ spec:
     namespaces:
     - name: istio-ingress
     - name: istio-egress
+    - name: gloo-mesh
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
