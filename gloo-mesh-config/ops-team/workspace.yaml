@@ -11,6 +11,10 @@ spec:
   - name: 'mgmt'
     namespaces:
     - name: ops-team-config
+  - name: '*'
+    namespaces:
+    - name: istio-ingress
+    - name: istio-egress
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
