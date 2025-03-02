@@ -12,6 +12,7 @@ spec:
   virtualGateways:
   - cluster: mgmt
     name: gmui-virtualgateway
+    namespace: ops-team-config
   workloadSelectors: []
   http:
   - name: gloo-mesh-ui-main
