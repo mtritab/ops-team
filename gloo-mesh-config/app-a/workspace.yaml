@@ -14,6 +14,7 @@ spec:
   - name: '*'
     namespaces:
     - name: app-a
+    - name: httpbin
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
