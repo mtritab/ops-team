@@ -3,7 +3,7 @@ apiVersion: networking.gloo.solo.io/v2
 kind: VirtualDestination
 metadata:
   name: details-vd
-  namespace: app-b-config
+  namespace: ops-team-config
   labels:
     failover: "true"
     expose: "true"

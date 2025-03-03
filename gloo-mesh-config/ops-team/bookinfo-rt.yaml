@@ -1,0 +1,27 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: productpage-rt
+  namespace: ops-team-config
+spec:
+  hosts:
+  - bookinfo.demo.mtritaba.com
+  http:
+  - forwardTo:
+      destinations:
+      - kind: VIRTUAL_DESTINATION
+        port:
+          number: 8080
+        ref:
+          name: productpage-vd
+          namespace: ops-team-config
+    matchers:
+    - uri:
+        prefix: /
+    name: productpage-rt
+  virtualGateways:
+  - name: ops-team-virtualgateway
+    namespace: ops-team-config
+  workloadSelectors: []

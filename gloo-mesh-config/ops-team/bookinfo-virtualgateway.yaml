@@ -1,0 +1,18 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualGateway
+metadata:
+  labels:
+    expose: "true"
+  name: ops-team-virtualgateway
+  namespace: ops-team-config
+spec:
+  listeners:
+  - allowedRouteTables:
+    - host: bookinfo.demo.mtritaba.com
+    http: {}
+    port:
+      number: 443
+  workloads:
+  - selector:
+      labels:
+        istio: ingressgateway

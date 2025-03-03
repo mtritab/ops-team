@@ -13,7 +13,7 @@ spec:
       namespace: gloo-system
   virtualHost:
     domains:
-    - '*.demo.mtritaba.com'
+    - 'bookinfo.demo.mtritaba.com'
     routes:
     - matchers:
        - prefix: '/' # delegate ownership of all routes for `example.com`
